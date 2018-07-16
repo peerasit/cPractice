@@ -2,13 +2,16 @@
 
 
 void main(){
+    char names[3][7] = {"Adrian","Bruno","Goran"};
     char adrianStr[4] = "ABC";
     char brunoStr[5] = "BABC";
     char goranStr[7] = "CCAABB";
 
-    printf("%s\n", adrianStr);
-    printf("%s\n", brunoStr);
-    printf("%s\n",goranStr);
+    int max = 0;
+
+//    printf("%s\n", adrianStr);
+//    printf("%s\n", brunoStr);
+//    printf("%s\n",goranStr);
 
     int point[3];
     for(int i = 0;i<3;i++)
@@ -28,9 +31,17 @@ void main(){
             point[2]++;
         }
     }
-    printf("%d",point[0]);
-    printf("%d",point[1]);
-    printf("%d",point[2]);
+    for(int i = 0;i<3;i++){
+        if(point[i] > max){
+            max = point[i];
+        }
+    }
+    printf("%d\n",max);
+    for(int i = 0;i<3;i++){
+        if(point[i] == max){
+            printf("%s\n",names[i]);
+        }
+    }
 
 
 }
