@@ -6,6 +6,7 @@ void main()
     scanf("%s",&word);
     int wordLength = 0;
     //find length
+    //eiei
 
     for(int c = 0;; c++)
     {
