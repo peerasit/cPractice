@@ -2,98 +2,123 @@
 
 void main()
 {
-    char pl1[6] = "..#..";
-    char pl2[6] = ".#.#.";
-    char pl3[6] = "#.X.#";
-    char pl4[6] = ".#.#.";
-    char pl5[6] = "..#..";
-
-    char p1[6] = "..#..";
-    char p2[6] = ".#.#.";
-    char p3[6] = "#.X.#";
-    char p4[6] = ".#.#.";
-    char p5[6] = "..#..";
-
-    char w1[6] = "..*..";
-    char w2[6] = ".*.*.";
-    char w3[6] = "*.X.*";
-    char w4[6] = ".*.*.";
-    char w5[6] = "..*..";
-
-    char wl1[6] = "..*..";
-    char wl2[6] = ".*.*.";
-    char wl3[6] = "*.X.*";
-    char wl4[6] = ".*.*.";
-    char wl5[6] = "..*..";
-
     char word[16];
-    int length ;
     scanf("%s",&word);
+    int wordLength = 0;
+    //find length
 
-    for(int i = 0; i<16; i++)
+    for(int c = 0;; c++)
     {
-        if(word[i] == '\0')
+        if(word[c] == '\0')
         {
-            length = i;
+            //printf("%c\n",word[c]);
             break;
         }
 
+        //printf("%c\n",word[c]);
+        wordLength++;
 
     }
+    //printf("%d\n",wordLength);
+    //printf("%d\n",(5*wordLength)-(wordLength-1));
 
-    for(int i = 0;i<length;i++){
+    int count = 0;
+    char result[5][(5*wordLength)-(wordLength-1)];
 
-        if((i+1)%3 == 0){
-            printf("%s",wl1);
+    int start = 0;
+
+    for(int p = 0; p<wordLength; p++)
+    {
+        int left = start+2,right = left;
+        for(int j = 0; j<3; j++)
+        {
+            for(int i = start; i<start+5; i++)
+            {
+                if(j == 2 && i == start+2)
+                {
+                    result[j][i] = word[p];
+
+                }
+                else if(i == left && left == right)
+                {
+                    if((p+1)%3==0)
+                            result[j][i] = '*';
+                            else if(i != start)
+                                result[j][i] = '#';
+                                else if(i==0){
+                                    result[j][i] = '#';
+                                }
+                    }
+            else if(i == left || i == right)
+                {
+                    if((p+1)%3==0)
+                            result[j][i] = '*';
+                            else if(i != start)
+                                result[j][i] = '#';
+                                else if(i==0){
+                                    result[j][i] = '#';
+                                }
+                    }
+            else
+            {
+                result[j][i] = '.';
+                }
+
+            }
+            //printf("\n");
+
+            --left;
+            ++right;
         }
-        else{
-            printf("%s",pl1);
 
+        left+=2;
+        right-=2;
+        for(int j = 3; j<5; j++)
+        {
+            for(int  i = start; i<start+5; i++)
+            {
+                if(i == left && left == right )
+                {
+                    if((p+1)%3==0)
+                            result[j][i] = '*';
+                            else if(i != start)
+                                result[j][i] = '#';
+                                else if(i==0){
+                                    result[j][i] = '#';
+                                }
+                    }
+            else if(i == left || i == right)
+                {
+                    if((p+1)%3==0)
+                            result[j][i] = '*';
+                            else if(i != start)
+                                result[j][i] = '#';
+                                else if(i==0){
+                                    result[j][i] = '#';
+                                }
+                    }
+            else
+            {
+                result[j][i] = '.';
+                }
+
+            }
+            //printf("\n");
+            ++left;
+            --right;
         }
+        //printf("%d\n",p+1);
+        start = ((p+1)*5)-(p+1);
+        //printf("%d \n",start);
     }
-    printf("\n");
-    for(int i = 0;i<length;i++){
-        if((i+1)%3 == 0){
-            printf("%s",wl2);
-        }
-        else{
-            printf("%s",pl2);
 
+    for(int row = 0; row<5; row++)
+    {
+        for(int col = 0; col<(5*wordLength)-(wordLength-1); col++)
+        {
+            printf("%c",result[row][col]);
         }
+        printf("\n");
     }
-    printf("\n");
-    for(int i = 0;i<length;i++){
-        p3[2] = word[i];
-        if((i+1)%3 == 0){
-            printf("%s",wl3);
-        }
-        else{
-            printf("%s",pl3);
-
-        }
-    }
-    printf("\n");
-    for(int i = 0;i<length;i++){
-        if((i+1)%3 == 0){
-            printf("%s",wl4);
-        }
-        else{
-            printf("%s",pl4);
-
-        }
-    }
-    printf("\n");
-    for(int i = 0;i<length;i++){
-        if((i+1)%3 == 0){
-            printf("%s",wl5);
-        }
-        else{
-            printf("%s",pl5);
-
-        }
-    }
-    printf("\n");
-
-
 
 }
